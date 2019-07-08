@@ -18,7 +18,7 @@
 
 #define USE_SERIAL Serial
 
-#define CURRENT_VERSION VERSION
+#define CURRENT_VERSION "1.3.0"
 #define CLOUD_FUNCTION_URL "http://us-central1-gcloud-ota-update.cloudfunctions.net/getDownloadUrl"
 
 WiFiClient client;
