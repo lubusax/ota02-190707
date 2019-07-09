@@ -18,7 +18,7 @@
 
 #define USE_SERIAL Serial
 
-#define CURRENT_VERSION "1.4.0"
+#define CURRENT_VERSION VERSION
 #define CLOUD_FUNCTION_URL "http://us-central1-ota02-190707.cloudfunctions.net/getDownloadUrl"
 
 WiFiClient client;
@@ -215,7 +215,7 @@ void setup()
 }
 
 int ledState = LOW;
-const long interval = 1000;
+const long interval = 200;
 unsigned long previousMillis = 0;
 
 void loop()
