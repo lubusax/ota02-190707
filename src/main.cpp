@@ -18,8 +18,8 @@
 
 #define USE_SERIAL Serial
 
-#define CURRENT_VERSION "1.3.0"
-#define CLOUD_FUNCTION_URL "http://us-central1-gcloud-ota-update.cloudfunctions.net/getDownloadUrl"
+#define CURRENT_VERSION "1.4.0"
+#define CLOUD_FUNCTION_URL "http://us-central1-ota02-190707.cloudfunctions.net/getDownloadUrl"
 
 WiFiClient client;
 #if defined(ESP8266)
@@ -41,6 +41,8 @@ String getDownloadUrl()
   url += String("?version=") + CURRENT_VERSION;
   url += String("&variant=") + VARIANT;
   http.begin(url);
+
+  USE_SERIAL.println("Cloud Function url ="+ url); 
 
   USE_SERIAL.print("[HTTP] GET...\n");
   // start connection and send HTTP header
@@ -190,9 +192,11 @@ void setup()
     ESP.restart();
     delay(1000);
   }
- 
+
+  
   // Check if we need to download a new version
   String downloadUrl = getDownloadUrl();
+  Serial.println("downloadurl = "+ downloadUrl);
   if (downloadUrl.length() > 0)
   {
     bool success = downloadUpdate(downloadUrl);
@@ -211,7 +215,7 @@ void setup()
 }
 
 int ledState = LOW;
-const long interval = 300;
+const long interval = 1000;
 unsigned long previousMillis = 0;
 
 void loop()
